@@ -7,14 +7,15 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 @Configuration
 public class SchedulerConfig implements SchedulingConfigurer {
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        ThreadPoolTaskScheduler threadPool = new ThreadPoolTaskScheduler();
 
-        int n = Runtime.getRuntime().availableProcessors();
-        threadPool.setPoolSize(n);
-        threadPool.initialize();
+	@Override
+	public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+		ThreadPoolTaskScheduler threadPool = new ThreadPoolTaskScheduler();
 
-        taskRegistrar.setTaskScheduler(threadPool);
-    }
+		int n = Runtime.getRuntime().availableProcessors();
+		threadPool.setPoolSize(n);
+		threadPool.initialize();
+
+		taskRegistrar.setTaskScheduler(threadPool);
+	}
 }

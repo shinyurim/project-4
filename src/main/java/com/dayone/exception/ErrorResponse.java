@@ -1,2 +1,13 @@
-package com.dayone.exception;public class ErrorResponse {
+package com.dayone.exception;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class ErrorResponse {
+
+	private int code;
+	private String message;
+
 }

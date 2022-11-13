@@ -18,29 +18,30 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class CacheConfig {
 
-    @Value("${spring.redis.host}")
-    private String host;
+	@Value("${spring.redis.host}")
+	private String host;
 
-    @Value("${spring.redis.port}")
-    private int port;
+	@Value("${spring.redis.port}")
+	private int port;
 
-    @Bean
-    public CacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory) {
-        RedisCacheConfiguration conf = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+	@Bean
+	public CacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory) {
+		RedisCacheConfiguration conf = RedisCacheConfiguration.defaultCacheConfig()
+			.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(
+				new StringRedisSerializer()))
+			.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(
+				new GenericJackson2JsonRedisSerializer()));
 
-        return RedisCacheManager.RedisCacheManagerBuilder
-                        .fromConnectionFactory(redisConnectionFactory)
-                        .cacheDefaults(conf)
-                        .build();
-    }
+		return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(
+				redisConnectionFactory)
+			.cacheDefaults(conf).build();
+	}
 
-    @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
-        conf.setHostName(this.host);
-        conf.setPort(this.port);
-        return new LettuceConnectionFactory(conf);
-    }
+	@Bean
+	public RedisConnectionFactory redisConnectionFactory() {
+		RedisStandaloneConfiguration conf = new RedisStandaloneConfiguration();
+		conf.setHostName(this.host);
+		conf.setPort(this.port);
+		return new LettuceConnectionFactory(conf);
+	}
 }

@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class FinanceController {
 
-    private final FinanceService financeService;
+	private final FinanceService financeService;
 
-    @GetMapping("/dividend/{companyName}")
-    public ResponseEntity<?> searchFinance(@PathVariable String companyName) {
-        var result = this.financeService.getDividendByCompanyName(companyName);
-        return ResponseEntity.ok(result);
-    }
+	@GetMapping("/dividend/{companyName}")
+	public ResponseEntity<?> searchFinance(@PathVariable String companyName) {
+		var result = this.financeService.getDividendByCompanyName(companyName);
+		return ResponseEntity.ok(result);
+	}
 
 }

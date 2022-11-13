@@ -1,2 +1,9 @@
-package com.dayone.exception;public class AbstractException {
+package com.dayone.exception;
+
+public abstract class AbstractException extends RuntimeException {
+
+	abstract public int getStatusCode();
+
+	abstract public String getMessage();
+
 }

@@ -10,11 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ScrapedResult {
 
-    private Company company;
+	private Company company;
 
-    private List<Dividend> dividends;
+	private List<Dividend> dividends;
 
-    public ScrapedResult() {
-        this.dividends = new ArrayList<>();
-    }
+	public ScrapedResult() {
+		this.dividends = new ArrayList<>();
+	}
 }
